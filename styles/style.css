@@ -1,0 +1,352 @@
+/*****
+    GÉNÉRAL
+*****/
+body,
+body * {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+}
+
+html {
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+    html {
+        overflow: unset;
+    }
+}
+
+main {
+    align-items: center;
+    background: radial-gradient(circle, rgb(0,98,65) 50%, rgb(0,69,38) 100%);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+@media screen and (max-width: 1023px) {
+    main {
+        height: unset;
+        min-height: 100vh;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.hidden {
+    display: none;
+}
+
+/*****
+    FORMULAIRE DE LANCEMENT DE PARTIE
+*****/
+
+form {
+    align-items: center;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 1em;
+    box-shadow: 5px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+form h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+form p:first-of-type {
+    font-size: 1.5em;
+    margin-bottom: 0.25em;
+    text-align: center;
+}
+
+/* Choix du nombre de joueurs */
+form input[type=number] {
+    background-color: rgba(0,98,65,0.1);
+    border-radius: 0.25em;
+    font-size: 1.5em;
+    height: 2em;
+    margin-bottom: 2em;
+    outline: none;
+    padding: 0.1em;
+    text-align: center;
+    text-shadow: 0 0 0 black;
+    vertical-align: middle;
+    width: 2em;
+}
+
+form input[type=number]:hover {
+    animation: input-green-blink 1s infinite;
+    cursor: pointer;
+}
+
+@keyframes input-green-blink {
+    0% { box-shadow: none;}
+    50% { box-shadow: inset 0 0 1px 1px seagreen;}
+    100% { box-shadow: none;}
+}
+
+/* Lancement de la partie */
+form input[type=submit] {
+    background-color: rgba(0,98,65,0.1);
+    border-radius: 0.25em;
+    box-shadow: 1px 1px rgba(0,0,0,0.5);
+    font-size: 1.25em;
+    height: 2.5em;
+    margin-bottom: 2em;
+    outline: none;
+    transition: 0.25s ease;
+    width: 50%;
+}
+
+form input[type=submit]:enabled {
+    animation: input-green-blink 1s infinite;
+}
+
+form input[type=submit]:hover:enabled {
+    background-color: rgba(0,69,38,0.8);
+    color: white;
+    cursor: pointer;
+}
+
+form p {
+    text-align: center;
+}
+
+/*****
+    ZONE DE JEU
+*****/
+
+/* Zone de jeu contenant les joueurs */
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Zone d'un joueur */
+article {
+    align-items: center;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 1em;
+    box-shadow: 3px 3px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    min-width: 30em;
+    padding: 2em;
+}
+
+/* Identité du joueur */
+.name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* État actif du joueur */
+.active {
+    animation: active-player 2s infinite;
+}
+
+@keyframes active-player {
+    0% { background-color: rgba(255,255,255,0.5); }
+    50% { background-color: rgba(255,255,255,0.65); }
+    100% { background-color: rgba(255,255,255,0.5); }
+}
+
+/* État passif du joueur */
+.passive * {
+    pointer-events: none;
+}
+
+.passive {
+    position: relative;
+}
+
+.passive::before {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 1em;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+/* Main d'un joueur */
+.hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 5em;
+    margin: 1em 0;
+}
+
+/* Carte */
+.card {
+    background-color: white;
+    border-radius: 0.25em;
+    box-shadow: 2px 2px rgba(0,0,0,0.5);
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 2.5em;
+}
+
+.card p {
+    font-family: 'Rokkitt', serif;
+}
+
+.card p:nth-of-type(2) {
+    text-align: center;
+}
+
+.card p:last-of-type {
+    transform: rotate(180deg);
+}
+
+.red p {
+    color: red;
+}
+
+/* Score du joueur */
+.score {
+    font-weight: bold;
+}
+
+/* Contrôles d'un jouer */
+.controls input {
+    background-color: rgba(0,98,65,0.1);
+    border-radius: 0.25em;
+    box-shadow: 1px 1px rgba(0,0,0,0.5);
+    font-size: 1.25em;
+    margin-top: 1em;
+    outline: none;
+    transition: 0.25s ease;
+}
+
+/* Demande d'une nouvelle carte */
+.controls input:first-of-type:enabled {
+    animation: input-green-blink 1s infinite;
+}
+
+.controls input:first-of-type:hover:enabled {
+    background-color: rgba(0,69,38,0.8);
+    color: white;
+    cursor: pointer;
+}
+
+/* Passage du tour */
+.controls input:last-of-type:enabled {
+    animation: input-red-blink 1s infinite;
+}
+
+.controls input:last-of-type:hover:enabled {
+    animation: none;
+    background-color: rgba(69, 0, 0, 0.8);
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes input-red-blink {
+    0% { box-shadow: none; }
+    50% { box-shadow: inset 0 0 1px 1px indianred; }
+    100% { box-shadow: none; }
+}
+
+/*****
+    ÉCRANS DE FIN DE PARTIE
+*****/
+aside {
+    align-items: center;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    margin: 35vh 35vw;
+    padding: 1em;
+    position: absolute;
+    top: 0;
+    width: 30vw;
+    z-index: 100;
+}
+
+@media screen and (max-width: 1023px) {
+    aside {
+        margin: 35vh 10vw;
+        position: fixed;
+        width: 80vw;
+    }
+}
+
+aside h2 {
+    margin-bottom: 1em;
+}
+
+/* Compteur du nombre de parties */
+aside p {
+    margin-bottom: 2em;
+}
+
+/* Lancement d'une nouvelle partie */
+aside input[type=submit] {
+    background-color: white;
+    border-radius: 0.25em;
+    box-shadow: 1px 1px rgba(0,0,0,0.5);
+    font-size: 1.25em;
+    height: 2.5em;
+    outline: none;
+    transition: 0.25s ease;
+    width: 50%;
+}
+
+aside input[type=submit]:enabled {
+    animation: input-green-blink 1s infinite;
+}
+
+aside input[type=submit]:hover:enabled {
+    background-color: rgba(0,69,38,0.8);
+    color: white;
+    cursor: pointer;
+}
+
+/* Gagnant(s */
+.winner {
+    animation: winning-player 2s infinite;
+}
+
+@keyframes winning-player {
+    0% { background-color: rgba(255,255,255,0.5); }
+    50% { background-color: seagreen; }
+    100% { background-color: rgba(255,255,255,0.5); }
+}
+
+.winner > p {
+    animation: winning-player-details 2s infinite;
+}
+
+@keyframes winning-player-details {
+    0% { color: initial; }
+    50% { color: white; }
+    100% { color: initial; }
+}
+
+/* Perdant(s */
+.loser {
+    background-color: indianred;
+}
+
+.loser > p {
+    color: white;
+}

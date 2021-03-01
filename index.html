@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>21 | Dave-Enrick Proulx</title>
+    <meta name="description" content="Le jeu du 21, par Dave-Enrick Proulx">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/ico">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <script src="scripts/deck.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/Start.js"></script>
+    <script src="scripts/Table.js"></script>
+    <script src="scripts/Player.js"></script>
+    <script src="scripts/Card.js"></script>
+</head>
+<body>
+    <main>
+        <form data-js-form autocomplete="off">
+            <h1>21</h1>
+            <p>Combien de joueurs?</p>
+            <input type="number" name="nbPlayers" id="nbPlayers" min="2" max="4">
+            <input type="submit" value="Jouer" data-js-submit disabled>
+            <p>Le jeu de 21 peut accueillir de 2 à 4 joueurs.</p>
+        </form>
+        <section class="hidden" data-js-board>
+
+        </section>
+    </main>
+</body>
+</html>
